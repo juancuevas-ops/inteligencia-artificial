@@ -1,0 +1,112 @@
+def definir_requisitos_linaje_datos(objetivos_empresariales,
+                                     fuentes_datos,
+                                     consumidores_datos,
+                                     estandares_normativos):
+  """
+  Define los requisitos de linaje de datos para una organización.
+
+  Parámetros:
+    objetivos_empresariales: Lista de objetivos de negocio que se quieren alcanzar
+      con el linaje de datos.
+    fuentes_datos: Lista de las diferentes fuentes de datos utilizadas en la organización.
+    consumidores_datos: Lista de los diferentes consumidores de datos dentro de la organización.
+    estandares_normativos: Lista de los estándares normativos que se deben cumplir.
+
+  Devuelve:
+    Un diccionario con los requisitos de linaje de datos.
+  """
+
+  requisitos = {}
+
+  # **Origen de los datos**
+  requisitos["origen_datos"] = {
+      "nivel_granularidad": "columna",
+      "frecuencia": "diario",
+      "retencion": "5 años"
+  }
+
+  # **Transformaciones**
+  requisitos["transformaciones"] = {
+      "nivel_granularidad": "proceso",
+      "frecuencia": "diario",
+      "retencion": "1 año"
+  }
+
+  # **Esquemas**
+  requisitos["esquemas"] = {
+      "nivel_granularidad": "tabla",
+      "frecuencia": "semanal",
+      "retencion": "indefinida"
+  }
+
+  # **Dependencias**
+  requisitos["dependencias"] = {
+      "nivel_granularidad": "columna",
+      "frecuencia": "diario",
+      "retencion": "1 año"
+  }
+
+  # **Metadatos**
+  requisitos["metadatos"] = {
+      "nivel_granularidad": "columna",
+      "frecuencia": "semanal",
+      "retencion": "indefinida"
+  }
+
+  # **Métricas de calidad**
+  requisitos["metricas_calidad"] = {
+      "nivel_granularidad": "columna",
+      "frecuencia": "diario",
+      "retencion": "1 año"
+  }
+
+  # **Ajustar requisitos según contexto**
+  for categoria in requisitos.keys():
+    for propiedad in requisitos[categoria].keys():
+      requisitos[categoria][propiedad] = _ajustar_requisito(
+          requisitos[categoria][propiedad],
+          objetivos_empresariales,
+          fuentes_datos,
+          consumidores_datos,
+          estandares_normativos)
+
+  return requisitos
+
+def _ajustar_requisito(requisito,
+                        objetivos_empresariales,
+                        fuentes_datos,
+                        consumidores_datos,
+                        estandares_normativos):
+  """
+  Ajusta un requisito de linaje de datos según el contexto.
+
+  Parámetros:
+    requisito: El requisito a ajustar.
+    objetivos_empresariales: Lista de objetivos de negocio que se quieren alcanzar
+      con el linaje de datos.
+    fuentes_datos: Lista de las diferentes fuentes de datos utilizadas en la organización.
+    consumidores_datos: Lista de los diferentes consumidores de datos dentro de la organización.
+    estandares_normativos: Lista de los estándares normativos que se deben cumplir.
+
+  Devuelve:
+    El requisito ajustado.
+  """
+
+  # TODO: Implementar lógica para ajustar el requisito según el contexto
+
+  return requisito
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Explicación del código:
+
+La función definir_requisitos_linaje_datos define los requisitos de linaje de datos para una organización.
+La función toma como entrada los siguientes parámetros:
+objetivos_empresariales: Lista de objetivos de negocio que se quieren alcanzar con el linaje de datos.
+fuentes_datos: Lista de las diferentes fuentes de datos utilizadas en la organización.
+consumidores_datos: Lista de los diferentes consumidores de datos dentro de la organización.
+estandares_normativos: Lista de los estándares normativos que se deben cumplir.
+La función devuelve un diccionario con los requisitos de linaje de datos para las siguientes categorías:
+origen_datos: Origen de los datos.
+transformaciones: Transformaciones aplicadas a los datos.
+esquemas: Esquemas de los datos.
+dependencias: Dependencias
